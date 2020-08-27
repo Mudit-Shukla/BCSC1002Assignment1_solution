@@ -6,6 +6,8 @@
  * */
 package definitions;
 
+import java.util.Objects;
+
 public class Student {
     private String firstName;
     private String middleName;
@@ -71,4 +73,18 @@ public class Student {
         this.listOfBooksIssued = listOfBooksIssued;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(obj == null || getClass() != obj)
+            return false;
+        Student student = (Student) obj;
+        return Objects.equals(this.getFirstName(), student.getFirstName()) &&
+                Objects.equals(this.getMiddleName(), student.getMiddleName()) &&
+                Objects.equals(this.getLastName(), student.getLastName()) &&
+                this.getRollNumber() == student.getRollNumber() &&
+                this.getNumberOfBooksIssued() == student.getNumberOfBooksIssued() &&
+                this.getListOfBooksIssued() == student.getListOfBooksIssued();
+    }
 }
