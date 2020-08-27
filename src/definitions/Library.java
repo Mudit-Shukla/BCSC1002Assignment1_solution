@@ -12,4 +12,12 @@ public class Library {
     public Library(Book[] booksAvailableInTheLibrary) {
         this.booksAvailableInTheLibrary = booksAvailableInTheLibrary;
     }
+
+    public Book[] getBooksAvailableInTheLibrary() {
+        return booksAvailableInTheLibrary;
+    }
+
+    public void setBooksAvailableInTheLibrary(Book[] booksAvailableInTheLibrary) {
+        this.booksAvailableInTheLibrary = booksAvailableInTheLibrary;
+    }
 }

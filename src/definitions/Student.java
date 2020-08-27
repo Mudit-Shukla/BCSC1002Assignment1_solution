@@ -22,4 +22,52 @@ public class Student {
         this.numberOfBooksIssued = numberOfBooksIssued;
         this.listOfBooksIssued = listOfBooksIssued;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public long getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(long rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    public int getNumberOfBooksIssued() {
+        return numberOfBooksIssued;
+    }
+
+    public void setNumberOfBooksIssued(int numberOfBooksIssued) {
+        this.numberOfBooksIssued = numberOfBooksIssued;
+    }
+
+    public Book[] getListOfBooksIssued() {
+        return listOfBooksIssued;
+    }
+
+    public void setListOfBooksIssued(Book[] listOfBooksIssued) {
+        this.listOfBooksIssued = listOfBooksIssued;
+    }
 }
