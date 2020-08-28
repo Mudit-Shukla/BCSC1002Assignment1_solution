@@ -87,4 +87,9 @@ public class Student {
                 this.getNumberOfBooksIssued() == student.getNumberOfBooksIssued() &&
                 this.getListOfBooksIssued() == student.getListOfBooksIssued();
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getRollNumber(), getNumberOfBooksIssued(), getListOfBooksIssued());
+    }
 }

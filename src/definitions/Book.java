@@ -6,6 +6,7 @@
  * */
 package definitions;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Book {
@@ -43,6 +44,8 @@ public class Book {
         this.ISBNNumberOfBook = ISBNNumberOfBook;
     }
 
+
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj)
@@ -53,5 +56,10 @@ public class Book {
         return Objects.equals(getNameOfBook(), book.getNameOfBook()) &&
                 Objects.equals(getNameOfTheAuthorOfBook(), book.getNameOfTheAuthorOfBook()) &&
                 Objects.equals(getISBNNumberOfBook(), book.getISBNNumberOfBook());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNameOfBook(), getNameOfTheAuthorOfBook(), getISBNNumberOfBook());
     }
 }

@@ -7,6 +7,7 @@
 package definitions;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Library {
     private Book[] booksAvailableInTheLibrary;
@@ -23,6 +24,10 @@ public class Library {
         this.booksAvailableInTheLibrary = booksAvailableInTheLibrary;
     }
 
+    public String toString() {
+        return String.format("Books available in the library : %s", Arrays.toString(booksAvailableInTheLibrary));
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj)
@@ -31,5 +36,10 @@ public class Library {
             return false;
         Library library = (Library) obj;
         return Arrays.equals(getBooksAvailableInTheLibrary(), library.getBooksAvailableInTheLibrary());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBooksAvailableInTheLibrary());
     }
 }
