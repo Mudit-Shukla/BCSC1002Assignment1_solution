@@ -81,17 +81,17 @@ public class Student {
         this.listOfBooksIssued = listOfBooksIssued;
     }
 
-    public String toString(){
-        return String.format("Student name : %s %s %s, \n Student roll number : %d, \n Number of books issued : %d, \n Books issued : %s" ,
+    public String toString() {
+        return String.format("Student name : %s %s %s, \n Student roll number : %d, \n Number of books issued : %d, \n Books issued : %s",
                 getFirstName(), getMiddleName(), getLastName(), getRollNumber(), getNumberOfBooksIssued(),
                 Arrays.toString(getListOfBooksIssued()));
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj)
+        if (this == obj)
             return true;
-        if(obj == null || getClass() != obj)
+        if (obj == null || getClass() != obj)
             return false;
         Student student = (Student) obj;
         return Objects.equals(this.getFirstName(), student.getFirstName()) &&

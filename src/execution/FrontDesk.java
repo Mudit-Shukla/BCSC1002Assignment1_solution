@@ -16,18 +16,18 @@ import java.util.Scanner;
 public class FrontDesk {
 
     private static final String LIBRARIAN_PASSWORD = "Librarian123";
-    private static Scanner scannerObject = new Scanner(System.in);
-    private static Library library = new Library();
     private static final byte ADD_BOOK_TO_LIBRARY = 1;
     private static final byte REMOVE_BOOK_FROM_LIBRARY = 2;
-    private static final byte QUIT_FROM_LIBRARIAN_ACCESS= 3;
-    private static final byte  LIBRARIAN_ACCESS = 1;
+    private static final byte QUIT_FROM_LIBRARIAN_ACCESS = 3;
+    private static final byte LIBRARIAN_ACCESS = 1;
     private static final byte STUDENT_ACCESS = 2;
-    private static final byte  ISSUE_BOOK_FROM_LIBRARY= 1;
-    private static final byte  RETURN_ISSUED_BOOK = 2;
-    private static final byte  DISPLAY_ALL_ISSUED_BOOKS= 3;
-    private static final byte  QUIT_FROM_STUDENT_ACCESS= 4;
-    private static final byte  QUIT_FROM_APP = 3;
+    private static final byte ISSUE_BOOK_FROM_LIBRARY = 1;
+    private static final byte RETURN_ISSUED_BOOK = 2;
+    private static final byte DISPLAY_ALL_ISSUED_BOOKS = 3;
+    private static final byte QUIT_FROM_STUDENT_ACCESS = 4;
+    private static final byte QUIT_FROM_APP = 3;
+    private static Scanner scannerObject = new Scanner(System.in);
+    private static Library library = new Library();
 
     public static void main(String[] args) {
 
@@ -45,7 +45,7 @@ public class FrontDesk {
                         printFunctionsAvailableForLibrarian();
                         boolean quitAsLibrarian = false;
                         while (!quitAsLibrarian) {
-                           byte librarianChoice = scannerObject.nextByte();
+                            byte librarianChoice = scannerObject.nextByte();
                             switch (librarianChoice) {
                                 case ADD_BOOK_TO_LIBRARY:
                                     addBookToTheLibrary();
@@ -70,7 +70,7 @@ public class FrontDesk {
                         System.out.println("Invalid user");
                     break;
                 case STUDENT_ACCESS:
-                   getDetailsFromTheUser();
+                    getDetailsFromTheUser();
                     printFunctionsAvailableForStudent();
                     boolean quitAsStudent = false;
                     while (!quitAsStudent) {
@@ -148,12 +148,12 @@ public class FrontDesk {
     }
 
     /**
-     *  This method can be accessed by the student login to display all the books that have issued by him.
+     * This method can be accessed by the student login to display all the books that have issued by him.
      */
 
     private static void displayAllIssuedBooks() {
-        System.out.println("Displaying all issued books by you.");
         Book[] listOfBooksIssued = new Student(getDetailsFromTheUser().getRollNumber()).getListOfBooksIssued();
+        System.out.println("Displaying all issued books by you.");
         System.out.println(Arrays.toString(listOfBooksIssued));
     }
 
@@ -161,7 +161,7 @@ public class FrontDesk {
      * This method has been designed for the librarian login to add a book to the list of available books in the library.
      */
 
-    private static void addBookToTheLibrary(){
+    private static void addBookToTheLibrary() {
         System.out.println("Enter name of the book");
         String nameOfTheBook = scannerObject.nextLine();
         scannerObject.next();
@@ -170,7 +170,7 @@ public class FrontDesk {
         scannerObject.next();
         System.out.println("Enter ISBN Code");
         String ISBNCode = scannerObject.next();
-        library.addBookToTheLibrary(nameOfTheBook,nameOfAuthor,ISBNCode);
+        library.addBookToTheLibrary(nameOfTheBook, nameOfAuthor, ISBNCode);
     }
 
     /**
@@ -186,13 +186,13 @@ public class FrontDesk {
         scannerObject.next();
         System.out.println("Enter ISBN Code");
         String ISBNCode = scannerObject.next();
-        library.removeBookFromLibrary(nameOfTheBook,nameOfAuthor,ISBNCode);
+        library.removeBookFromLibrary(nameOfTheBook, nameOfAuthor, ISBNCode);
     }
 
     /**
      * This method is used to take the details from the student(mainly roll number)
-     * @return
-     * this method returns Student reference type.
+     *
+     * @return this method returns Student reference type.
      */
 
 
@@ -227,6 +227,7 @@ public class FrontDesk {
     /**
      * This function is used to print options for different types of login access.
      */
+
     public static void printLoginAccessType() {
         System.out.println("Enter 1 for Librarian login");
         System.out.println("Enter 2 for Student login");

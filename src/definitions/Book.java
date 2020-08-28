@@ -6,7 +6,6 @@
  * */
 package definitions;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Book {
@@ -54,16 +53,16 @@ public class Book {
         this.availabilty = availabilty;
     }
 
-    public String toString(){
+    public String toString() {
         return String.format("Name of the book : %s \n Name of the author : %s \n ISBN Number : %s ",
-                getNameOfBook(),getNameOfTheAuthorOfBook(),getISBNNumberOfBook());
+                getNameOfBook(), getNameOfTheAuthorOfBook(), getISBNNumberOfBook());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj)
+        if (this == obj)
             return true;
-        if(obj == null || getClass() != obj)
+        if (obj == null || getClass() != obj)
             return false;
         Book book = (Book) obj;
         return Objects.equals(getNameOfBook(), book.getNameOfBook()) &&
