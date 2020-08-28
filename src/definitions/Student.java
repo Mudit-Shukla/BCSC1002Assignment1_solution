@@ -26,6 +26,9 @@ public class Student {
         this.listOfBooksIssued = listOfBooksIssued;
     }
 
+    public Student(long rollNumber) {
+        this.rollNumber = rollNumber;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -13,11 +13,13 @@ public class Book {
     private String nameOfBook;
     private String nameOfTheAuthorOfBook;
     private String ISBNNumberOfBook;
+    private byte availabilty;
 
-    public Book(String nameOfBook, String nameOfTheAuthorOfBook, String ISBNNumberOfBook) {
+    public Book(String nameOfBook, String nameOfTheAuthorOfBook, String ISBNNumberOfBook, byte availabilty) {
         this.nameOfBook = nameOfBook;
         this.nameOfTheAuthorOfBook = nameOfTheAuthorOfBook;
         this.ISBNNumberOfBook = ISBNNumberOfBook;
+        this.availabilty = 1;
     }
 
     public String getNameOfBook() {
@@ -42,6 +44,14 @@ public class Book {
 
     public void setISBNNumberOfBook(String ISBNNumberOfBook) {
         this.ISBNNumberOfBook = ISBNNumberOfBook;
+    }
+
+    public byte getAvailability() {
+        return availabilty;
+    }
+
+    public void setAvailability(byte availabilty) {
+        this.availabilty = availabilty;
     }
 
     public String toString(){
