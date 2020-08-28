@@ -25,7 +25,8 @@ public class Library {
     }
 
     public String toString() {
-        return String.format("Books available in the library : %s", Arrays.toString(booksAvailableInTheLibrary));
+        return String.format("Books available in the library : %s",
+                Arrays.toString(booksAvailableInTheLibrary));
     }
 
     @Override

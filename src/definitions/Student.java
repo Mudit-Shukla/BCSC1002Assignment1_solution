@@ -6,6 +6,7 @@
  * */
 package definitions;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Student {
@@ -71,6 +72,12 @@ public class Student {
 
     public void setListOfBooksIssued(Book[] listOfBooksIssued) {
         this.listOfBooksIssued = listOfBooksIssued;
+    }
+
+    public String toString(){
+        return String.format("Student name : %s %s %s, \n Student roll number : %d, \n Number of books issued : %d, \n Books issued : %s" ,
+                getFirstName(), getMiddleName(), getLastName(), getRollNumber(), getNumberOfBooksIssued(),
+                Arrays.toString(getListOfBooksIssued()));
     }
 
     @Override

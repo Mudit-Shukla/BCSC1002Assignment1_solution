@@ -44,7 +44,10 @@ public class Book {
         this.ISBNNumberOfBook = ISBNNumberOfBook;
     }
 
-
+    public String toString(){
+        return String.format("Name of the book : %s \n Name of the author : %s \n ISBN Number : %s ",
+                getNameOfBook(),getNameOfTheAuthorOfBook(),getISBNNumberOfBook());
+    }
 
     @Override
     public boolean equals(Object obj) {
