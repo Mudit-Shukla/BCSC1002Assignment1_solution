@@ -18,6 +18,16 @@ public class FrontDesk {
     private static final String LIBRARIAN_PASSWORD = "Librarian123";
     private static Scanner scannerObject = new Scanner(System.in);
     private static Library library = new Library();
+    private static final byte ADD_BOOK_TO_LIBRARY = 1;
+    private static final byte REMOVE_BOOK_FROM_LIBRARY = 2;
+    private static final byte QUIT_FROM_LIBRARIAN_ACCESS= 3;
+    private static final byte  LIBRARIAN_ACCESS = 1;
+    private static final byte STUDENT_ACCESS = 2;
+    private static final byte  ISSUE_BOOK_FROM_LIBRARY= 1;
+    private static final byte  RETURN_ISSUED_BOOK = 2;
+    private static final byte  DISPLAY_ALL_ISSUED_BOOKS= 3;
+    private static final byte  QUIT_FROM_STUDENT_ACCESS= 4;
+    private static final byte  QUIT_FROM_APP = 3;
 
     public static void main(String[] args) {
 
@@ -28,27 +38,26 @@ public class FrontDesk {
         while (!quit) {
             int loginAccessType = scannerObject.nextByte();
             switch (loginAccessType) {
-                case 1:
+                case LIBRARIAN_ACCESS:
                     System.out.println("Enter password");
                     if (scannerObject.next().equals(LIBRARIAN_PASSWORD)) {
                         System.out.println("Access granted");
                         printFunctionsAvailableForLibrarian();
-
                         boolean quitAsLibrarian = false;
                         while (!quitAsLibrarian) {
                            byte librarianChoice = scannerObject.nextByte();
                             switch (librarianChoice) {
-                                case 1:
+                                case ADD_BOOK_TO_LIBRARY:
                                     addBookToTheLibrary();
                                     // call method to add book to the available books in library
                                     printFunctionsAvailableForLibrarian();
                                     break;
-                                case 2:
+                                case REMOVE_BOOK_FROM_LIBRARY:
                                     removeBookFromTheLibrary();
                                     // call method to remove book from the available book in the library
                                     printFunctionsAvailableForLibrarian();
                                     break;
-                                case 3:
+                                case QUIT_FROM_LIBRARIAN_ACCESS:
                                     quitAsLibrarian = true;
                                     printLoginAccessType();
                                     break;
@@ -60,29 +69,29 @@ public class FrontDesk {
                     } else
                         System.out.println("Invalid user");
                     break;
-                case 2:
+                case STUDENT_ACCESS:
                    getDetailsFromTheUser();
                     printFunctionsAvailableForStudent();
                     boolean quitAsStudent = false;
                     while (!quitAsStudent) {
                         byte studentChoice = scannerObject.nextByte();
                         switch (studentChoice) {
-                            case 1:
+                            case ISSUE_BOOK_FROM_LIBRARY:
                                 issueBookFromLibrary();
                                 // call method to issue a book
                                 printFunctionsAvailableForStudent();
                                 break;
-                            case 2:
+                            case RETURN_ISSUED_BOOK:
                                 returnPreviouslyIssuedBook();
                                 // call method to return a book
                                 printFunctionsAvailableForStudent();
                                 break;
-                            case 3:
+                            case DISPLAY_ALL_ISSUED_BOOKS:
                                 displayAllIssuedBooks();
                                 // call method to show all the previously issued books
                                 printFunctionsAvailableForStudent();
                                 break;
-                            case 4:
+                            case QUIT_FROM_STUDENT_ACCESS:
                                 quitAsStudent = true;
                                 printLoginAccessType();
                                 break;
@@ -93,7 +102,7 @@ public class FrontDesk {
                     }
                     // give access to methods designed for students
                     break;
-                case 3:
+                case QUIT_FROM_APP:
                     quit = true;
                     break;
                 default:
@@ -103,7 +112,9 @@ public class FrontDesk {
         }
     }
 
-
+    /**
+     * This method is accessible to student login to issue a book from the library.
+     */
 
     private static void issueBookFromLibrary() {
 
@@ -119,6 +130,10 @@ public class FrontDesk {
             System.out.println("The requested book is not currently aailable in the library, Sorry for the inconvenience");
     }
 
+    /**
+     * This method is accessible to the student login to to return the previously issued book.
+     */
+
     private static void returnPreviouslyIssuedBook() {
         System.out.println("Enter name of the book");
         String name = scannerObject.nextLine();
@@ -132,11 +147,19 @@ public class FrontDesk {
             System.out.println("No such book was issued by you. ");
     }
 
+    /**
+     *  This method can be accessed by the student login to display all the books that have issued by him.
+     */
+
     private static void displayAllIssuedBooks() {
         System.out.println("Displaying all issued books by you.");
         Book[] listOfBooksIssued = new Student(getDetailsFromTheUser().getRollNumber()).getListOfBooksIssued();
         System.out.println(Arrays.toString(listOfBooksIssued));
     }
+
+    /**
+     * This method has been designed for the librarian login to add a book to the list of available books in the library.
+     */
 
     private static void addBookToTheLibrary(){
         System.out.println("Enter name of the book");
@@ -150,6 +173,10 @@ public class FrontDesk {
         library.addBookToTheLibrary(nameOfTheBook,nameOfAuthor,ISBNCode);
     }
 
+    /**
+     * This method is designed for librarian's access to remove a book from the library
+     */
+
     private static void removeBookFromTheLibrary() {
         System.out.println("Enter name of the book");
         String nameOfTheBook = scannerObject.nextLine();
@@ -162,12 +189,21 @@ public class FrontDesk {
         library.removeBookFromLibrary(nameOfTheBook,nameOfAuthor,ISBNCode);
     }
 
+    /**
+     * This method is used to take the details from the student(mainly roll number)
+     * @return
+     * this method returns Student reference type.
+     */
+
 
     private static Student getDetailsFromTheUser() {
         System.out.println("Enter roll number");
         return new Student(scannerObject.nextLong());
     }
 
+    /**
+     * This function is used to print the functions available for the student.
+     */
 
     public static void printFunctionsAvailableForStudent() {
         System.out.println("How may I help you today?");
@@ -177,12 +213,20 @@ public class FrontDesk {
         System.out.println("4. Exit.");
     }
 
+    /**
+     * This function is used to print the functions available for the librarian
+     */
+
     public static void printFunctionsAvailableForLibrarian() {
         System.out.println("How may I help you today?");
         System.out.println("1. Add book to the library");
         System.out.println("2. Remove book from library");
         System.out.println("3. Exit.");
     }
+
+    /**
+     * This function is used to print options for different types of login access.
+     */
     public static void printLoginAccessType() {
         System.out.println("Enter 1 for Librarian login");
         System.out.println("Enter 2 for Student login");

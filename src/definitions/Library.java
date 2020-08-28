@@ -33,6 +33,14 @@ public class Library {
                 Arrays.toString(booksAvailableInTheLibrary));
     }
 
+    /**
+     * This function is called by "issueBookFromLibrary()" to issue book from the library
+     * It takes two paramaters.
+     * @param nameOfBook  is the name of the book
+     * @param ISBNNumber is the ISBN Code of the book
+     * @return boolean
+     */
+
     public boolean issueBook(String nameOfBook, String ISBNNumber){
        if(getBooksAvailableInTheLibrary() == null)
            return false;
@@ -47,9 +55,24 @@ public class Library {
         return false;
     }
 
+    /**
+     * This function is called by "addBookToTheLibrary()" to add a book to list of available books in the library.
+     * @param nameOfBook is the name of the book
+     * @param nameOfAuthor is the name of the author of the book
+     * @param ISBNCode is the ISBN Code of the book
+     */
+
     public void addBookToTheLibrary(String nameOfBook, String nameOfAuthor, String ISBNCode){
         System.out.println("New book added to list of the books available in library");
     }
+
+    /**
+     * This method is called by "removeBookFromTheLibrary()" to remove a book from the list of available books in the library
+     * @param nameOfBook is the name of the book
+     * @param nameOfAuthor is the name of the author of the book
+     * @param ISBNCode is the ISBN Code
+     * @return boolean
+     */
 
     public boolean removeBookFromLibrary(String nameOfBook, String nameOfAuthor, String ISBNCode) {
         if(booksAvailableInTheLibrary == null) {
@@ -64,6 +87,14 @@ public class Library {
         }
         return false;
     }
+
+    /**
+     * This method is called by "returnPreviouslyIssuedBook()" to to return a book that has been previously issued by the student.
+     * @param nameOfBook is the name of the book
+     * @param ISBNNumber is the ISBN Code
+     * @param rollNumber is the roll number of the student
+     * @return boolean
+     */
 
     public boolean returnIssuedBook(String nameOfBook, String ISBNNumber,long rollNumber){
         Student student = new Student(rollNumber);

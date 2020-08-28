@@ -26,6 +26,9 @@ public class Student {
         this.listOfBooksIssued = listOfBooksIssued;
     }
 
+    /**
+     * This constructor is mainly used to set the roll number of the student signing as student in Library management inventory system
+     */
     public Student(long rollNumber) {
         this.rollNumber = rollNumber;
     }
