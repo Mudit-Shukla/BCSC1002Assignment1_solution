@@ -11,19 +11,9 @@ import java.util.Objects;
 
 public class Library {
     private Book[] booksAvailableInTheLibrary;
-    private byte availability;
 
-    public byte getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(byte availability) {
-        this.availability = availability;
-    }
-
-    public Library(Book[] booksAvailableInTheLibrary, byte availability) {
+    public Library(Book[] booksAvailableInTheLibrary) {
         this.booksAvailableInTheLibrary = booksAvailableInTheLibrary;
-        this.availability = 1;
     }
 
     public Library() {
@@ -44,30 +34,48 @@ public class Library {
     }
 
     public boolean issueBook(String nameOfBook, String ISBNNumber){
-        for(Book book : booksAvailableInTheLibrary)
+       if(getBooksAvailableInTheLibrary() == null)
+           return false;
+        else{
+            for(Book book : booksAvailableInTheLibrary)
             if(book.getISBNNumberOfBook().equals(ISBNNumber))
                 if(book.getAvailability() == 1) {
                     book.setAvailability((byte) 0);
                     return true;
                 }
+        }
         return false;
     }
 
-    public boolean removeBookFromLibrary(Book bookToBeRemoved) {
+    public void addBookToTheLibrary(String nameOfBook, String nameOfAuthor, String ISBNCode){
+        System.out.println("New book added to list of the books available in library");
+    }
+
+    public boolean removeBookFromLibrary(String nameOfBook, String nameOfAuthor, String ISBNCode) {
+        if(booksAvailableInTheLibrary == null) {
+            System.out.println("No such book is available in the library");
+            return false;
+        }
         for(Book book : booksAvailableInTheLibrary)
-            if(book.equals(bookToBeRemoved)){
+            if(book.equals(new Book(nameOfBook,nameOfAuthor,ISBNCode,(byte)1))){
                book.setAvailability((byte) 0);
-                return true;
+               System.out.println("Book removed from the list of the available books in the library");
+               return true;
         }
         return false;
     }
 
     public boolean returnIssuedBook(String nameOfBook, String ISBNNumber,long rollNumber){
-        for(Book book : new Student(rollNumber).getListOfBooksIssued())
-            if(book.getISBNNumberOfBook() == ISBNNumber) {
+        Student student = new Student(rollNumber);
+        if(student.getListOfBooksIssued() == null)
+            return false;
+        else{
+            for(Book book : student.getListOfBooksIssued())
+            if(book.getISBNNumberOfBook().equals(ISBNNumber)) {
                 book.setAvailability((byte) 1);
                 return true;
             }
+        }
         return false;
     }
 

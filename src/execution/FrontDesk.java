@@ -21,10 +21,9 @@ public class FrontDesk {
 
     public static void main(String[] args) {
 
+        System.out.println("-=-=--=-=-\"Welcome To The Front Desk\"-=-=--=-=-\n");
+        printLoginAccessType();
 
-        System.out.println("Enter 1 for Librarian login");
-        System.out.println("Enter 2 for Student login");
-        System.out.println("Enter 3 to exit");
         boolean quit = false;
         while (!quit) {
             int loginAccessType = scannerObject.nextByte();
@@ -34,51 +33,62 @@ public class FrontDesk {
                     if (scannerObject.next().equals(LIBRARIAN_PASSWORD)) {
                         System.out.println("Access granted");
                         printFunctionsAvailableForLibrarian();
-                        byte librarianChoice = scannerObject.nextByte();
+
                         boolean quitAsLibrarian = false;
                         while (!quitAsLibrarian) {
+                           byte librarianChoice = scannerObject.nextByte();
                             switch (librarianChoice) {
                                 case 1:
+                                    addBookToTheLibrary();
                                     // call method to add book to the available books in library
+                                    printFunctionsAvailableForLibrarian();
                                     break;
                                 case 2:
+                                    removeBookFromTheLibrary();
                                     // call method to remove book from the available book in the library
+                                    printFunctionsAvailableForLibrarian();
                                     break;
                                 case 3:
                                     quitAsLibrarian = true;
+                                    printLoginAccessType();
                                     break;
                                 default:
                                     System.out.println("Invalid input");
+                                    printFunctionsAvailableForLibrarian();
                             }
                         }
                     } else
                         System.out.println("Invalid user");
                     break;
                 case 2:
-                    System.out.println("enter details");
-                    Student studentDetails = getDetailsFromTheUser();
+                   getDetailsFromTheUser();
                     printFunctionsAvailableForStudent();
-                    byte studentChoice = scannerObject.nextByte();
                     boolean quitAsStudent = false;
                     while (!quitAsStudent) {
+                        byte studentChoice = scannerObject.nextByte();
                         switch (studentChoice) {
                             case 1:
                                 issueBookFromLibrary();
                                 // call method to issue a book
+                                printFunctionsAvailableForStudent();
                                 break;
                             case 2:
                                 returnPreviouslyIssuedBook();
                                 // call method to return a book
+                                printFunctionsAvailableForStudent();
                                 break;
                             case 3:
                                 displayAllIssuedBooks();
                                 // call method to show all the previously issued books
+                                printFunctionsAvailableForStudent();
                                 break;
                             case 4:
                                 quitAsStudent = true;
+                                printLoginAccessType();
                                 break;
                             default:
                                 System.out.println("Invalid input");
+                                printFunctionsAvailableForStudent();
                         }
                     }
                     // give access to methods designed for students
@@ -93,10 +103,13 @@ public class FrontDesk {
         }
     }
 
+
+
     private static void issueBookFromLibrary() {
 
         System.out.println("Enter the name of the book");
         String name = scannerObject.nextLine();
+        scannerObject.next();
         System.out.println("Enter ISBN number");
         String ISBNNumber = scannerObject.next();
         boolean whetherBookIsIssued = library.issueBook(name, ISBNNumber);
@@ -109,6 +122,7 @@ public class FrontDesk {
     private static void returnPreviouslyIssuedBook() {
         System.out.println("Enter name of the book");
         String name = scannerObject.nextLine();
+        scannerObject.next();
         System.out.println("Enter ISBN number");
         String ISBNNumber = scannerObject.next();
         boolean ifBookIsReturned = library.returnIssuedBook(name, ISBNNumber, getDetailsFromTheUser().getRollNumber());
@@ -124,15 +138,38 @@ public class FrontDesk {
         System.out.println(Arrays.toString(listOfBooksIssued));
     }
 
+    private static void addBookToTheLibrary(){
+        System.out.println("Enter name of the book");
+        String nameOfTheBook = scannerObject.nextLine();
+        scannerObject.next();
+        System.out.println("Enter name of the author of the book");
+        String nameOfAuthor = scannerObject.nextLine();
+        scannerObject.next();
+        System.out.println("Enter ISBN Code");
+        String ISBNCode = scannerObject.next();
+        library.addBookToTheLibrary(nameOfTheBook,nameOfAuthor,ISBNCode);
+    }
+
+    private static void removeBookFromTheLibrary() {
+        System.out.println("Enter name of the book");
+        String nameOfTheBook = scannerObject.nextLine();
+        scannerObject.next();
+        System.out.println("Enter name of the author of the book");
+        String nameOfAuthor = scannerObject.nextLine();
+        scannerObject.next();
+        System.out.println("Enter ISBN Code");
+        String ISBNCode = scannerObject.next();
+        library.removeBookFromLibrary(nameOfTheBook,nameOfAuthor,ISBNCode);
+    }
+
+
     private static Student getDetailsFromTheUser() {
         System.out.println("Enter roll number");
-        Student student = new Student(scannerObject.nextLong());
-        return student;
+        return new Student(scannerObject.nextLong());
     }
 
 
     public static void printFunctionsAvailableForStudent() {
-        System.out.println("-=-=--=-=-\"Welcome To The Front Desk\"-=-=--=-=-\n");
         System.out.println("How may I help you today?");
         System.out.println("1. Issue a new book for me.");
         System.out.println("2. Return a previously issues book for me.");
@@ -141,10 +178,15 @@ public class FrontDesk {
     }
 
     public static void printFunctionsAvailableForLibrarian() {
-        System.out.println("-=-=--=-=-\"Welcome To The Front Desk\"-=-=--=-=-\n");
         System.out.println("How may I help you today?");
         System.out.println("1. Add book to the library");
         System.out.println("2. Remove book from library");
+        System.out.println("3. Exit.");
+    }
+    public static void printLoginAccessType() {
+        System.out.println("Enter 1 for Librarian login");
+        System.out.println("Enter 2 for Student login");
+        System.out.println("Enter 3 to exit.");
     }
 }
 
